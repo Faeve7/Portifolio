@@ -1,0 +1,25 @@
+using UnityEngine;
+
+public class Movimento : MonoBehaviour
+{
+    private Rigidbody2D rb;
+    [SerializeField] private float velocidade = 3f;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        Movimentar(horizontalInput);
+    }
+
+    private void Movimentar(float inputHorizontal)
+    {
+        Vector2 velocidadeMovimento = new Vector2(inputHorizontal * velocidade, rb.velocity.y);
+        rb.velocity = velocidadeMovimento;
+    }
+  }
+}
